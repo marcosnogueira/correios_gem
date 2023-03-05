@@ -93,22 +93,23 @@ module Correios
             },
             delivery_at_home: string_to_bool(service[:entrega_domiciliar]),
             delivery_on_saturdays: delivery_on_saturdays,
-            deadline: {
-              days: service[:prazo_entrega].to_i,
-              date:
-              if @method == 'CalcPrecoPrazo'
-                calculate_shipping_deadline(
-                  service[:prazo_entrega].to_i,
-                  delivery_on_saturdays
-                )
-              else
-                calculate_shipping_deadline(
-                  service[:prazo_entrega].to_i,
-                  delivery_on_saturdays,
-                  @reference_date
-                )
-              end
-            },
+            deadline: service[:prazo_entrega].to_i,
+            # deadline: {
+            #   days: service[:prazo_entrega].to_i,
+            #   date:
+            #   if @method == 'CalcPrecoPrazo'
+            #     calculate_shipping_deadline(
+            #       service[:prazo_entrega].to_i,
+            #       delivery_on_saturdays
+            #     )
+            #   else
+            #     calculate_shipping_deadline(
+            #       service[:prazo_entrega].to_i,
+            #       delivery_on_saturdays,
+            #       @reference_date
+            #     )
+            #   end
+            # },
             note: service[:obs_fim]
           }
         else
